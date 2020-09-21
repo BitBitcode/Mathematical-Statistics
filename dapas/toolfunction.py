@@ -87,14 +87,13 @@ def C(n, m):
 
 # 【模块内测试代码】
 if __name__ == "__main__":
-    N = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+    N = [0, 1, 2, 3, 4, 5]
     for n in N:
-        print(fac(n))
+        print("%d! =" %n, fac(n))
 
     n = 5
     m = 2
-    # C_nk = (fac(n))/((fac(k))*(fac(n-k)))
-    # print(C_nk)
-
-    print(A(n,m))
-    print(C(n,m))
+    print("A(", n, ",", m, ") = ", A(n,m))
+    # print("A(%d,%d) =", A(n,m))
+    print("C(", n, ",", m, ") = ", C(n,m))

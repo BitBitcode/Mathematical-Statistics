@@ -29,8 +29,8 @@ Copyright (c) BitBitcode. All rights reserved.
 # 第三方库
 import math
 # 自定义库
-import statistics
-from dapas.toolfunction import *
+from statistics import *
+from toolfunction import *
 
 
 # 【概率密度函数】
@@ -71,7 +71,7 @@ def exp(x, k):
     + [浮点数] 该样本点（x）处的概率密度
     """
     if (x > 0):
-        y = k * math.exp(- k * x)
+        y = k * math.exp(-k*x)
         return y
     else:
         return 0
@@ -111,7 +111,7 @@ def pois(x, Lambda):
     + [浮点数] 该样本点（x）处的概率密度
     """
     k = 0   # 这里有问题
-    y = ((Lambda**k)*math.exp(-Lambda))/(fac(k))
+    y = ((Lambda**k) * math.exp(-Lambda))/(fac(k))
     return y
 
 
@@ -146,7 +146,8 @@ def norm(x, Mu, Sigma):
     返回值：
     + [浮点数] 该样本点（x）处的概率密度
     """
-    y = (1/((math.sqrt(2*math.pi))*Sigma)) * math.exp(-((x-Mu)**2)/(2*Sigma**2))
+    y = (1/((math.sqrt(2*math.pi))*Sigma)) * \
+        math.exp(-((x-Mu)**2)/(2*Sigma**2))
     return y
 
 
@@ -168,7 +169,7 @@ def norm_s(x):
 
 
 # Γ分布
-def gamma(x):
+def gamma(x, Alpha, Beta):
     """
     【函数说明】
 
@@ -176,64 +177,22 @@ def gamma(x):
 
     参数：
     + x：[浮点数] 某个样本点（x）的横坐标值
+    + Alpha：（α>0）
+    + Beta：（β>0）
 
     返回值：
     + [浮点数] 该样本点（x）处的概率密度
     """
-    pass
-
-# t分布
-
-
-def tdis(x):
-    """
-    【函数说明】
-
-    功能：标准正态分布的概率密度函数（t Distribution）
-
-    参数：
-    + x：[浮点数] 某个样本点（x）的横坐标值
-
-    返回值：
-    + [浮点数] 该样本点（x）处的概率密度
-    """
-    pass
-
-
-# F分布
-def fdis(x):
-    """
-    【函数说明】
-
-    功能：标准正态分布的概率密度函数（F Distribution）
-
-    参数：
-    + x：[浮点数] 某个样本点（x）的横坐标值
-
-    返回值：
-    + [浮点数] 该样本点（x）处的概率密度
-    """
-    pass
-
-
-# β分布
-def beta(x):
-    """
-    【函数说明】
-
-    功能：β分布的概率密度函数（t Distribution）
-
-    参数：
-    + x：[浮点数] 某个样本点（x）的横坐标值
-
-    返回值：
-    + [浮点数] 该样本点（x）处的概率密度
-    """
-    pass
+    if(x > 0):
+        y = ((Beta**Alpha)/math.gamma(Alpha)) * \
+            x**(Alpha-1) * math.exp(-Beta*x)
+        return y
+    elif(x <= 0):
+        return 0
 
 
 # Χ^2分布
-def chisq(x):
+def chisq(x, n):
     """
     【函数说明】
 
@@ -245,12 +204,82 @@ def chisq(x):
     返回值：
     + [浮点数] 该样本点（x）处的概率密度
     """
-    pass
+    if(x > 0):
+        y = gamma(x, (n/2), (1/2))
+        return y
+    elif(x <= 0):
+        return 0
+
+
+# β分布
+def beta(x, a, b):
+    """
+    【函数说明】
+
+    功能：β分布的概率密度函数（t Distribution）
+
+    参数：
+    + x：[浮点数] 某个样本点（x）的横坐标值
+    + a：[浮点数] 
+    + b：[浮点数] 
+
+    返回值：
+    + [浮点数] 该样本点（x）处的概率密度
+    """
+    if(0 < x < 1):
+        y = (math.gamma(a+b))/(math.gamma(a)*math.gamma(b)) * \
+            (x**(a-1)) * ((1-x)**(b-1))
+        return y
+    elif(x <= 0):
+        return 0
+
+
+# t分布
+def tdis(x, n):
+    """
+    【函数说明】
+
+    功能：标准正态分布的概率密度函数（t Distribution）
+
+    参数：
+    + x：[浮点数] 某个样本点（x）的横坐标值
+    + n：[浮点数] 
+
+    返回值：
+    + [浮点数] 该样本点（x）处的概率密度
+    """
+    y = math.gamma((n+1)/2)/(math.sqrt(math.pi*n) *
+                             math.gamma(n/2)) * (1+(x**2/n))**(-(n+1)/2)
+    return y
+
+
+# F分布
+def fdis(x, n1, n2):
+    """
+    【函数说明】
+
+    功能：标准正态分布的概率密度函数（F Distribution）
+
+    参数：
+    + x：[浮点数] 某个样本点（x）的横坐标值
+
+    返回值：
+    + [浮点数] 该样本点（x）处的概率密度
+    """
+    if(x > 0):
+        y = (math.gamma((n1+n2)/2)*(n1/n2))/(math.gamma(n1/2)*math.gamma(n2/2)
+                                             ) * ((n1/n2)*x)**((n1/2)-1) * (1+(n1*x/n2))**(-(n1+n2)/2)
+        return y
+    elif(x <= 0):
+        return 0
 
 
 # 【模块内测试代码】
 if __name__ == "__main__":
     X_series = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     for x in X_series:
-        print("X~U(0,1)", x, "：", unif(1, 5, x))
-        print("X~E(0,1)", x, "：", exp(5, x))
+        print("X~U(0,1)", x, "：", unif(x, 1, 5))
+    for x in X_series:
+        print("X~E(0,1)", x, "：", exp(x, 2))
+    for x in X_series:
+        print("二项分布：", binom(x, 0.3, 100))
