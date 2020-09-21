@@ -22,8 +22,11 @@ Copyright (c) BitBitcode. All rights reserved.
 """
 
 
-# 【导入的其他库】
+# 【导入库】
+# 第三方库
 import math
+# 自定义库
+
 
 
 # 【函数定义】
@@ -89,7 +92,7 @@ def std(X):
 
 
 
-# 模块内测试代码
+# 【模块内测试代码】
 if __name__ == "__main__":
     Sample = [18, 19, 18, 17, 20, 21, 23, 19, 16]
     print("求和为：", sum(Sample))

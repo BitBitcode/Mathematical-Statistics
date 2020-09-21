@@ -21,8 +21,11 @@
 Copyright (c) BitBitcode. All rights reserved.
 """
 
-# 包含
+
+# 【导入库】
+# 第三方库
 import math
+# 自定义库
 import pystatistics
 
 
@@ -53,8 +56,10 @@ def f_norm_s(x):
     return (1/math.sqrt(2*math.pi))*math.exp(-(x**2)/2)
 
 
+# 
 
-# 模块内测试代码
+
+# 【模块内测试代码】
 if __name__ == "__main__":
     X_series = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     for x in X_series:
