@@ -3,13 +3,13 @@ import matplotlib.pyplot
 import numpy
 
 # 导入自定义库
-import pystatistics
-import pydistribution
+from dapas.statistics import *
+from dapas.distribution import *
 
 
 # 套壳函数（方便换函数）
 def f(x):
-    y = pydistribution.f_norm_s(x)  # 更换这里的函数即可
+    y = f_norm_s(x)  # 更换这里的函数即可
     # y = pydistribution.f_exponent(5,x)
     # y = pydistribution.f_uniformity(5,x)
     return y

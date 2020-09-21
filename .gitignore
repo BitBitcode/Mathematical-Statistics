@@ -7,3 +7,4 @@
 
 # Python解释器自动生成的包缓存文件
 __pycache__
+.dapas/__pycache__
