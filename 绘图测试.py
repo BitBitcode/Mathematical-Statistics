@@ -9,9 +9,9 @@ from dapas.distribution import *
 
 # 套壳函数（方便换函数）
 def f(x):
-    y = f_norm_s(x)  # 更换这里的函数即可
-    # y = f_exponent(5,x)
-    # y = f_uniformity(5,x)
+    y = norm_s(x)  # 更换这里的函数即可
+    # y = exp(x, 5)
+    # y = unif(x, -1, 5)
     return y
 
 

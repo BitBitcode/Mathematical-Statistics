@@ -41,7 +41,7 @@ def sum(X):
     功能：计算样本的总和（Sum）
 
     参数：
-    + [列表] 包含样本数据的Python列表
+    + X：[列表] 包含样本数据的Python列表
     
     返回值：
     + [浮点数] 列表中所有元素的总和
@@ -59,7 +59,7 @@ def ave(X):
     功能：计算样本的均值（Average）
 
     参数：
-    + [列表] 包含样本数据的Python列表
+    + X：[列表] 包含样本数据的Python列表
     
     返回值：
     + [浮点数] 列表中所有元素的均值
@@ -69,14 +69,14 @@ def ave(X):
     return X_ave
 
 
-def vari(X):
+def var(X):
     """
     【函数】
     
     功能：计算样本的方差（Variance）
 
     参数：
-    + [列表] 包含样本数据的Python列表
+    + X：[列表] 包含样本数据的Python列表
     
     返回值：
     + [浮点数] 列表中所有元素的方差
@@ -86,18 +86,18 @@ def vari(X):
     X_ave = ave(X)
     for x_i in X:
         S = S + (x_i - X_ave)**2
-    X_vari = S / n
-    return X_vari
+    X_var = S / n
+    return X_var
 
 
-def vari_r(X):
+def var_r(X):
     """
     【函数】
     
     功能：计算样本的修正方差（Revise Variance）
 
     参数：
-    + [列表] 包含样本数据的Python列表
+    + X：[列表] 包含样本数据的Python列表
     
     返回值：
     + [浮点数] 列表中所有元素的修正方差
@@ -107,8 +107,8 @@ def vari_r(X):
     X_ave = ave(X)
     for x_i in X:
         S = S + (x_i - X_ave)**2
-    X_vari = S / (n+1)
-    return X_vari
+    X_var_r = S / (n+1)
+    return X_var_r
 
 
 def std(X):
@@ -118,7 +118,7 @@ def std(X):
     功能：计算样本的标准差（Standard deviation）
 
     参数：
-    + [列表] 包含样本数据的Python列表
+    + X：[列表] 包含样本数据的Python列表
     
     返回值：
     + [浮点数] 列表中所有元素的标准差
@@ -138,6 +138,6 @@ if __name__ == "__main__":
     Sample = [18, 19, 18, 17, 20, 21, 23, 19, 16]
     print("求和为：", sum(Sample))
     print("平均值为：", ave(Sample))
-    print("方差为：", vari(Sample))
-    print("修正方差为：", vari_r(Sample))
+    print("方差为：", var(Sample))
+    print("修正方差为：", var_r(Sample))
     print("标准差为：", std(Sample))
