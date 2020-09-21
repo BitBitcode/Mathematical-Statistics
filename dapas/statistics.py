@@ -1,6 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-
 #【库说明】
 """
 【数理统计系列库】
@@ -12,12 +9,15 @@
 库函数
 + sum(X)
 + ave(X)
++ vari(X)
++ vari_r(X)
++ std(X)
 
 更多信息
 + 作者：Kiana Kaslana
 + 个人邮箱：smilewwc@qq.com
 + 个人网页：https://bitbitcode.github.io/
-+ 开源地址：https://github.com/BitBitcode
++ 开源地址：https://gitee.com/Acrylic-Studio/Mathematical-Statistics
 
 更新日志
 + 创建日期：2020.9.20
@@ -33,13 +33,18 @@ import math
 
 
 
-# 【函数定义】
-# 统计量函数
+# 【统计量函数定义】
 def sum(X):
     """
-    【函数】求和
-    + 参数：列表
-    + 返回值：列表中所有元素的和
+    【函数】
+    
+    功能：计算样本的总和（Sum）
+
+    参数：
+    + [列表] 包含样本数据的Python列表
+    
+    返回值：
+    + [浮点数] 列表中所有元素的总和
     """
     X_sum = 0
     for x_i in X:
@@ -49,7 +54,15 @@ def sum(X):
 
 def ave(X):
     """
-    【函数】求平均值
+    【函数】
+    
+    功能：计算样本的均值（Average）
+
+    参数：
+    + [列表] 包含样本数据的Python列表
+    
+    返回值：
+    + [浮点数] 列表中所有元素的均值
     """
     n = len(X)
     X_ave = sum(X) / n
@@ -58,7 +71,15 @@ def ave(X):
 
 def vari(X):
     """
-    【函数】求方差（非修正）variance
+    【函数】
+    
+    功能：计算样本的方差（Variance）
+
+    参数：
+    + [列表] 包含样本数据的Python列表
+    
+    返回值：
+    + [浮点数] 列表中所有元素的方差
     """
     n = len(X)
     S = 0
@@ -71,7 +92,15 @@ def vari(X):
 
 def vari_r(X):
     """
-    【函数】求修正方差 revise
+    【函数】
+    
+    功能：计算样本的修正方差（Revise Variance）
+
+    参数：
+    + [列表] 包含样本数据的Python列表
+    
+    返回值：
+    + [浮点数] 列表中所有元素的修正方差
     """
     n = len(X)
     S = 0
@@ -84,7 +113,15 @@ def vari_r(X):
 
 def std(X):
     """
-    【函数】求标准差 Standard deviation
+    【函数】
+    
+    功能：计算样本的标准差（Standard deviation）
+
+    参数：
+    + [列表] 包含样本数据的Python列表
+    
+    返回值：
+    + [浮点数] 列表中所有元素的标准差
     """
     n = len(X)
     S = 0
