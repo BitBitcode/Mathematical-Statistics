@@ -1,15 +1,38 @@
 #【库说明】
+"""
+【数理统计系列库】
+
+简介
++ 库名：pystatistics.py
++ 功能：统计量函数
+
+库函数
++ sum(X)
++ ave(X)
+
+更多信息
++ 个人邮箱：smilewwc@qq.com
++ 个人网页：https://bitbitcode.github.io/
++ 开源地址：https://github.com/BitBitcode
+
+更新日志
++ 创建日期：2020.9.20
+
+Copyright (c) BitBitcode. All rights reserved.
+"""
 
 
-
-# 包含
+# 【导入的其他库】
 import math
 
 
+# 【函数定义】
 # 统计量函数
 def sum(X):
     """
     【函数】求和
+    + 参数：列表
+    + 返回值：列表中所有元素的和
     """
     X_sum = 0
     for x_i in X:

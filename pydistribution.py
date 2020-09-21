@@ -1,5 +1,25 @@
-# 【库说明】
+#【库说明】
+"""
+【数理统计系列库】
 
+简介
++ 库名：pydistribution.py
++ 功能：概率密度函数与分布函数
+
+库函数
++ f_uniformity(a, b, x)
++ f_exponent(k, x)
+
+更多信息
++ 个人邮箱：smilewwc@qq.com
++ 个人网页：https://bitbitcode.github.io/
++ 开源地址：https://github.com/BitBitcode
+
+更新日志
++ 创建日期：2020.9.20
+
+Copyright (c) BitBitcode. All rights reserved.
+"""
 
 # 包含
 import math
@@ -25,12 +45,12 @@ def f_exponent(k, x):
         return 0
 
 
-
 # 正态分布
 def f_norm(s,m,x):
     return (1/math.sqrt(2*math.pi))*math.exp(-((x-m)**2)/(2*s**2))
 
 
+# 模块内测试代码
 if __name__ == "__main__":
     X_series = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     for x in X_series:
