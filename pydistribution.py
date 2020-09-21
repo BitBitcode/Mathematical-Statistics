@@ -11,6 +11,7 @@
 + f_exponent(k, x)
 
 更多信息
++ 作者：Kiana Kaslana
 + 个人邮箱：smilewwc@qq.com
 + 个人网页：https://bitbitcode.github.io/
 + 开源地址：https://github.com/BitBitcode
