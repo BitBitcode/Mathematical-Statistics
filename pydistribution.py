@@ -1,4 +1,4 @@
-#【库说明】
+# 【库说明】
 """
 【数理统计系列库】
 
@@ -26,13 +26,11 @@ import math
 import pystatistics
 
 
-
-
 # 【概率密度函数】
 # 均匀分布
 def f_uniformity(a, b, x):
     if (a < x < b):
-        return 1/(b-a)
+        return 1 / (b - a)
     else:
         return 0
 
@@ -40,14 +38,20 @@ def f_uniformity(a, b, x):
 # 指数分布
 def f_exponent(k, x):
     if (x > 0):
-        return k*math.exp(-k*x)
+        return k * math.exp(- k * x)
     else:
         return 0
 
 
 # 正态分布
-def f_norm(s,m,x):
-    return (1/math.sqrt(2*math.pi))*math.exp(-((x-m)**2)/(2*s**2))
+def f_norm(m, s, x):
+    return (1/math.sqrt(2*math.pi)*s)*math.exp(-((x-m)**2)/(2*s**2))
+
+
+# 标准正态分布
+def f_norm_s(x):
+    return (1/math.sqrt(2*math.pi))*math.exp(-(x**2)/2)
+
 
 
 # 模块内测试代码
