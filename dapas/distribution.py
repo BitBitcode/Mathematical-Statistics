@@ -1,27 +1,32 @@
 # 【库说明】
 """
-【数理统计系列库】
+数理统计系列库
+============
 
 简介
-+ 库名：distribution.py
+-------
++ 库名：dapas.distribution.py
 + 功能：概率密度函数与分布函数
 
 库函数
+-------
 + f_uniformity(a, b, x)
 + f_exponent(k, x)
 + f_norm(m, s, x):
 + f_norm_s(x)
 
 更多信息
+-------
 + 作者：Kiana Kaslana
 + 个人邮箱：smilewwc@qq.com
 + 个人网页：https://bitbitcode.github.io/
 + 开源地址：https://gitee.com/Acrylic-Studio/Mathematical-Statistics
 
 更新日志
+-------
 + 创建日期：2020.9.20
 
-Copyright (c) BitBitcode. All rights reserved.
+Copyright (c) Acrylic Studio. All rights reserved.
 """
 
 
@@ -29,46 +34,46 @@ Copyright (c) BitBitcode. All rights reserved.
 # 第三方库
 import math
 # 自定义库
-from statistics import *
-from toolfunction import *
+from dapas.basefunction import *
+from dapas.statistics import *
 
 
 # 【概率密度函数】
 # 均匀分布
-def unif(a, b, x):
+def unif(x, min=0, max=1):
     """
     【函数说明】
 
     功能：均匀分布的概率密度函数（Uniformity）
 
     参数：
-    + a：[浮点数] 区间左端点的横坐标值
-    + b：[浮点数] 区间右端点的横坐标值
-    + x：[浮点数] 某个样本点（x）的横坐标值
+    + x：[float 浮点型] 某个样本点（x）的横坐标值
+    + min：[float 浮点型] 区间左端点的横坐标值，若省略则默认为0
+    + max：[float 浮点型] 区间右端点的横坐标值，若省略则默认为1
 
     返回值：
-    + [浮点数] 该样本点（x）处的概率密度
+    + [float 浮点型] 该样本点（x）处的概率密度
     """
-    if (a < x < b):
-        y = 1 / (b - a)
+    if (min < x < max):
+        y = 1 / (max - min)
         return y
     else:
         return 0
 
 
 # 指数分布
-def exp(x, k):
+def exp(x, k=1):
     """
     【函数说明】
 
     功能：指数分布的概率密度函数（Exponent）
 
     参数：
-    + x：[浮点数] 某个样本点（x）的横坐标值
-    + k：[浮点数] 指数分布的参数
+    + x：[float 浮点型] 某个样本点（x）的横坐标值
+    + k：[float 浮点型] 指数分布的参数，若省略则默认为1
 
     返回值：
-    + [浮点数] 该样本点（x）处的概率密度
+    + [float 浮点型] 该样本点（x）处的概率密度
     """
     if (x > 0):
         y = k * math.exp(-k*x)
@@ -82,15 +87,15 @@ def binom(x, p, n=1):
     """
     【函数说明】
 
-    功能：二项分布的概率密度函数（Binomial Distribution）
+    功能：二项分布的概率密度函数（Binomial Distribution），默认为(0,1)分布
 
     参数：
-    + x：[浮点数] 某个样本点（x）的横坐标值
-    + n：[整数] 试验次数
-    + p: [浮点数] 概率
+    + x：[float 浮点型] 某个样本点（x）的横坐标值
+    + p: [float 浮点型] 概率
+    + n：[int 整形] 试验次数，若省略则默认为1
 
     返回值：
-    + [浮点数] 该样本点（x）处的概率密度
+    + [float 浮点型] 该样本点（x）处的概率密度
     """
     y = C(n, x) * (p**x) * ((1-p)**(n-x))
     return y
@@ -104,11 +109,11 @@ def pois(x, Lambda):
     功能：泊松分布的概率密度函数（Poison Distribution）
 
     参数：
-    + x：[浮点数] 某个样本点（x）的横坐标值
-    + Lambda：[浮点数] 泊松分布的参数（λ）
+    + x：[float 浮点型] 某个样本点（x）的横坐标值
+    + Lambda：[float 浮点型] 泊松分布的参数（λ）
 
     返回值：
-    + [浮点数] 该样本点（x）处的概率密度
+    + [float 浮点型] 该样本点（x）处的概率密度
     """
     k = 0   # 这里有问题
     y = ((Lambda**k) * math.exp(-Lambda))/(fac(k))
@@ -116,35 +121,58 @@ def pois(x, Lambda):
 
 
 # 几何分布
-def geom(x):
+def geom(x, p):
     """
     【函数说明】
 
-    功能：二项分布的概率密度函数（Geometry Distribution）
+    功能：几何分布的概率密度函数（Geometry Distribution）
 
     参数：
-    + x：[浮点数] 某个样本点（x）的横坐标值
+    + x：[int 整型] 在第x次尝试取得第1次成功
+    + p：[float 浮点型] 成功的概率
 
     返回值：
-    + [浮点数] 该样本点（x）处的概率密度
+    + [float 浮点型] 该样本点（x）处的概率密度
     """
-    pass
+    y = (1-p)**(x-1) * p
+    return y
+
+
+# 超几何分布
+def hyper(x, n, M, N):
+    """
+    【函数说明】
+
+    功能：超几何分布的概率密度函数（？ Geometry Distribution），超几何分布实际上是不放回抽样
+    若N件产品中有M件次品，抽检n件时所得次品数X=k
+
+    参数：
+    + x：[int 整型] 
+    + n：[int 整型]
+    + M：[int 整型] 次品数
+    + N：[int 整型] 样品总数 
+
+    返回值：
+    + [float 浮点型] 该样本点（x）处的概率密度
+    """
+    y = C(M, x)*C(N-M, n-x) / C(N, n)
+    return y
 
 
 # 正态分布
-def norm(x, Mu, Sigma):
+def norm(x, Mu=0, Sigma=1):
     """
     【函数说明】
 
-    功能：一般正态分布的概率密度函数（Normal）
+    功能：一般正态分布的概率密度函数（Normal），若省略期望与方差的参数，则为标准正态
 
     参数：
-    + x：[浮点数] 某个样本点（x）的横坐标值
-    + Mu：总体的期望（μ）
-    + Sigma：总体的方差（σ） 
+    + x：[float 浮点型] 某个样本点（x）的横坐标值
+    + Mu：[float 浮点型] 总体的期望（μ），若省略则0
+    + Sigma：[float 浮点型] 总体的方差（σ） ，若省略则1
 
     返回值：
-    + [浮点数] 该样本点（x）处的概率密度
+    + [float 浮点型] 该样本点（x）处的概率密度
     """
     y = (1/((math.sqrt(2*math.pi))*Sigma)) * \
         math.exp(-((x-Mu)**2)/(2*Sigma**2))
@@ -152,20 +180,20 @@ def norm(x, Mu, Sigma):
 
 
 # 标准正态分布
-def norm_s(x):
-    """
-    【函数说明】
+# def norm_s(x):
+#     """
+#     【函数说明】
 
-    功能：标准正态分布的概率密度函数（Standard Normal），样本期望为0，样本方差为1
+#     功能：标准正态分布的概率密度函数（Standard Normal），样本期望为0，样本方差为1
 
-    参数：
-    + x：[浮点数] 某个样本点（x）的横坐标值
+#     参数：
+#     + x：[float 浮点型] 某个样本点（x）的横坐标值
 
-    返回值：
-    + [浮点数] 该样本点（x）处的概率密度
-    """
-    y = (1/math.sqrt(2*math.pi)) * math.exp(-(x**2)/2)
-    return y
+#     返回值：
+#     + [float 浮点型] 该样本点（x）处的概率密度
+#     """
+#     y = (1/math.sqrt(2*math.pi)) * math.exp(-(x**2)/2)
+#     return y
 
 
 # Γ分布
@@ -176,12 +204,12 @@ def gamma(x, Alpha, Beta):
     功能：标准正态分布的概率密度函数（Gamma Distribution）
 
     参数：
-    + x：[浮点数] 某个样本点（x）的横坐标值
-    + Alpha：（α>0）
-    + Beta：（β>0）
+    + x：[float 浮点型] 某个样本点（x）的横坐标值
+    + Alpha：[float 浮点型] （α>0）
+    + Beta：[float 浮点型] （β>0）
 
     返回值：
-    + [浮点数] 该样本点（x）处的概率密度
+    + [float 浮点型] 该样本点（x）处的概率密度
     """
     if(x > 0):
         y = ((Beta**Alpha)/math.gamma(Alpha)) * \
@@ -199,10 +227,10 @@ def chisq(x, n):
     功能：卡方分布的概率密度函数（Χ^2 Distribution）
 
     参数：
-    + x：[浮点数] 某个样本点（x）的横坐标值
+    + x：[float 浮点型] 某个样本点（x）的横坐标值
 
     返回值：
-    + [浮点数] 该样本点（x）处的概率密度
+    + [float 浮点型] 该样本点（x）处的概率密度
     """
     if(x > 0):
         y = gamma(x, (n/2), (1/2))
@@ -219,12 +247,12 @@ def beta(x, a, b):
     功能：β分布的概率密度函数（t Distribution）
 
     参数：
-    + x：[浮点数] 某个样本点（x）的横坐标值
-    + a：[浮点数] 
-    + b：[浮点数] 
+    + x：[float 浮点型] 某个样本点（x）的横坐标值
+    + a：[float 浮点型] 
+    + b：[float 浮点型] 
 
     返回值：
-    + [浮点数] 该样本点（x）处的概率密度
+    + [float 浮点型] 该样本点（x）处的概率密度
     """
     if(0 < x < 1):
         y = (math.gamma(a+b))/(math.gamma(a)*math.gamma(b)) * \
@@ -242,14 +270,31 @@ def tdis(x, n):
     功能：标准正态分布的概率密度函数（t Distribution）
 
     参数：
-    + x：[浮点数] 某个样本点（x）的横坐标值
-    + n：[浮点数] 
+    + x：[float 浮点型] 某个样本点（x）的横坐标值
+    + n：[float 浮点型] 
 
     返回值：
-    + [浮点数] 该样本点（x）处的概率密度
+    + [float 浮点型] 该样本点（x）处的概率密度
     """
     y = math.gamma((n+1)/2)/(math.sqrt(math.pi*n) *
                              math.gamma(n/2)) * (1+(x**2/n))**(-(n+1)/2)
+    return y
+
+
+# 柯西分布
+def cauchy(x):
+    """
+    【函数说明】
+
+    功能：标准正态分布的概率密度函数（Cauchy Distribution）
+
+    参数：
+    + x：[float 浮点型] 某个样本点（x）的横坐标值
+
+    返回值：
+    + [float 浮点型] 该样本点（x）处的概率密度
+    """
+    y = 1/(math.pi*(1+x**2))
     return y
 
 
@@ -261,10 +306,10 @@ def fdis(x, n1, n2):
     功能：标准正态分布的概率密度函数（F Distribution）
 
     参数：
-    + x：[浮点数] 某个样本点（x）的横坐标值
+    + x：[float 浮点型] 某个样本点（x）的横坐标值
 
     返回值：
-    + [浮点数] 该样本点（x）处的概率密度
+    + [float 浮点型] 该样本点（x）处的概率密度
     """
     if(x > 0):
         y = (math.gamma((n1+n2)/2)*(n1/n2))/(math.gamma(n1/2)*math.gamma(n2/2)
@@ -283,3 +328,5 @@ if __name__ == "__main__":
         print("X~E(0,1)", x, "：", exp(x, 2))
     for x in X_series:
         print("二项分布：", binom(x, 0.3, 100))
+else:
+    print("【dapas.distribution加载成功】")

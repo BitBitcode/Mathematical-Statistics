@@ -1,12 +1,15 @@
 #【库说明】
 """
-【数理统计系列库】
+数理统计系列库
+============
 
 简介
+-------
 + 库名：pystatistics.py
 + 功能：统计量函数
 
 库函数
+-------
 + sum(X)
 + ave(X)
 + vari(X)
@@ -14,15 +17,17 @@
 + std(X)
 
 更多信息
+-------
 + 作者：Kiana Kaslana
 + 个人邮箱：smilewwc@qq.com
 + 个人网页：https://bitbitcode.github.io/
 + 开源地址：https://gitee.com/Acrylic-Studio/Mathematical-Statistics
 
 更新日志
+-------
 + 创建日期：2020.9.20
 
-Copyright (c) BitBitcode. All rights reserved.
+Copyright (c) Acrylic Studio. All rights reserved.
 """
 
 
@@ -30,7 +35,7 @@ Copyright (c) BitBitcode. All rights reserved.
 # 第三方库
 import math
 # 自定义库
-
+from dapas.basefunction import *
 
 
 # 【统计量函数定义】
@@ -41,10 +46,10 @@ def sum(X):
     功能：计算样本的总和（Sum）
 
     参数：
-    + X：[列表] 包含样本数据的Python列表
+    + X：[list 列表] 包含样本数据的Python列表
     
     返回值：
-    + [浮点数] 列表中所有元素的总和
+    + [float 浮点型] 列表中所有元素的总和
     """
     X_sum = 0
     for x_i in X:
@@ -59,10 +64,10 @@ def ave(X):
     功能：计算样本的均值（Average）
 
     参数：
-    + X：[列表] 包含样本数据的Python列表
+    + X：[list 列表] 包含样本数据的Python列表
     
     返回值：
-    + [浮点数] 列表中所有元素的均值
+    + [float 浮点型] 列表中所有元素的均值
     """
     n = len(X)
     X_ave = sum(X) / n
@@ -76,10 +81,10 @@ def var(X):
     功能：计算样本的方差（Variance）
 
     参数：
-    + X：[列表] 包含样本数据的Python列表
+    + X：[list 列表] 包含样本数据的Python列表
     
     返回值：
-    + [浮点数] 列表中所有元素的方差
+    + [float 浮点型] 列表中所有元素的方差
     """
     n = len(X)
     S = 0
@@ -97,10 +102,10 @@ def var_r(X):
     功能：计算样本的修正方差（Revise Variance）
 
     参数：
-    + X：[列表] 包含样本数据的Python列表
+    + X：[list 列表] 包含样本数据的Python列表
     
     返回值：
-    + [浮点数] 列表中所有元素的修正方差
+    + [float 浮点型] 列表中所有元素的修正方差
     """
     n = len(X)
     S = 0
@@ -118,10 +123,10 @@ def std(X):
     功能：计算样本的标准差（Standard deviation）
 
     参数：
-    + X：[列表] 包含样本数据的Python列表
+    + X：[list 列表] 包含样本数据的Python列表
     
     返回值：
-    + [浮点数] 列表中所有元素的标准差
+    + [float 浮点型] 列表中所有元素的标准差
     """
     n = len(X)
     S = 0
@@ -141,3 +146,5 @@ if __name__ == "__main__":
     print("方差为：", var(Sample))
     print("修正方差为：", var_r(Sample))
     print("标准差为：", std(Sample))
+else:
+   print("【dapas.statistics加载成功】")
