@@ -25,8 +25,13 @@ for x_i in X:
 # 图1：验证t分布在大样本的情况下区域正态分布
 matplotlib.pyplot.figure(num=1, figsize=(10, 5))
 
-matplotlib.pyplot.plot(X, Y_1, color="red", linewidth=1, linestyle="--")
-matplotlib.pyplot.plot(X, Y_2, color="blue", linewidth=1)
+matplotlib.pyplot.plot(X, Y_1, color="red", linewidth=1, linestyle="--", label="Standard Normal Distribution")
+matplotlib.pyplot.plot(X, Y_2, color="blue", linewidth=1, label="t Distribution")
+
+
+# 显示图例
+matplotlib.pyplot.legend(loc="upper right")
+
 
 # 设置 x、y 轴显示数据的区间
 # matplotlib.pyplot.xlim(-20, 20)

@@ -10,9 +10,11 @@
 
 库函数
 -------
-+ f_uniformity(a, b, x)
-+ f_exponent(k, x)
-+ f_norm(m, s, x):
++ binom(x, p, n=1)
++ pois(x, Lambda)
++ unif(a, b, x)
++ exp(k, x)
++ norm(m, s, x):
 + f_norm_s(x)
 
 更多信息
@@ -39,59 +41,16 @@ from dapas.statistics import *
 
 
 # 【概率密度函数】
-# 均匀分布
-def unif(x, min=0, max=1):
-    """
-    【函数说明】
-
-    功能：均匀分布的概率密度函数（Uniformity）
-
-    参数：
-    + x：[float 浮点型] 某个样本点（x）的横坐标值
-    + min：[float 浮点型] 区间左端点的横坐标值，若省略则默认为0
-    + max：[float 浮点型] 区间右端点的横坐标值，若省略则默认为1
-
-    返回值：
-    + [float 浮点型] 该样本点（x）处的概率密度
-    """
-    if (min < x < max):
-        y = 1 / (max - min)
-        return y
-    else:
-        return 0
-
-
-# 指数分布
-def exp(x, k=1):
-    """
-    【函数说明】
-
-    功能：指数分布的概率密度函数（Exponent）
-
-    参数：
-    + x：[float 浮点型] 某个样本点（x）的横坐标值
-    + k：[float 浮点型] 指数分布的参数，若省略则默认为1
-
-    返回值：
-    + [float 浮点型] 该样本点（x）处的概率密度
-    """
-    if (x > 0):
-        y = k * math.exp(-k*x)
-        return y
-    else:
-        return 0
-
-
 # 二项分布
 def binom(x, p, n=1):
     """
     【函数说明】
 
-    功能：二项分布的概率密度函数（Binomial Distribution），默认为(0,1)分布
+    功能：二项分布的概率密度函数（Binomial Distribution），省略n时为(0,1)分布
 
     参数：
     + x：[float 浮点型] 某个样本点（x）的横坐标值
-    + p: [float 浮点型] 概率
+    + p：[float 浮点型] 概率
     + n：[int 整形] 试验次数，若省略则默认为1
 
     返回值：
@@ -159,6 +118,49 @@ def hyper(x, n, M, N):
     return y
 
 
+# 均匀分布
+def unif(x, min=0, max=1):
+    """
+    【函数说明】
+
+    功能：均匀分布的概率密度函数（Uniformity）
+
+    参数：
+    + x：[float 浮点型] 某个样本点（x）的横坐标值
+    + min：[float 浮点型] 区间左端点的横坐标值，若省略则默认为0
+    + max：[float 浮点型] 区间右端点的横坐标值，若省略则默认为1
+
+    返回值：
+    + [float 浮点型] 该样本点（x）处的概率密度
+    """
+    if (min < x < max):
+        y = 1 / (max - min)
+        return y
+    else:
+        return 0
+
+
+# 指数分布
+def exp(x, k=1):
+    """
+    【函数说明】
+
+    功能：指数分布的概率密度函数（Exponent）
+
+    参数：
+    + x：[float 浮点型] 某个样本点（x）的横坐标值
+    + k：[float 浮点型] 指数分布的参数，若省略则默认为1
+
+    返回值：
+    + [float 浮点型] 该样本点（x）处的概率密度
+    """
+    if (x > 0):
+        y = k * math.exp(-k*x)
+        return y
+    else:
+        return 0
+
+
 # 正态分布
 def norm(x, Mu=0, Sigma=1):
     """
@@ -168,8 +170,8 @@ def norm(x, Mu=0, Sigma=1):
 
     参数：
     + x：[float 浮点型] 某个样本点（x）的横坐标值
-    + Mu：[float 浮点型] 总体的期望（μ），若省略则0
-    + Sigma：[float 浮点型] 总体的方差（σ） ，若省略则1
+    + Mu：[float 浮点型] 总体的期望（μ），若省略则为0
+    + Sigma：[float 浮点型] 总体的方差（σ） ，若省略则为1
 
     返回值：
     + [float 浮点型] 该样本点（x）处的概率密度
